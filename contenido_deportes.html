@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <title>Deportes</title>
+    <div class="container">
+        <header class="d-flex justify-content-center py-3">
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="Pag_princ_Carrousel.html" class="nav-link">Inicio</a></li>
+            <li class="nav-item"><a href="formulario.html" class="nav-link">Formulario</a></li>
+            <li class="nav-item"><a href="contenido_deportes.html" class="nav-link">Deportes</a></li>
+            <li class="nav-item"><a href="contenido_ligas_espana.html" class="nav-link">Liga de España</a></li>
+          </ul>
+        </header>
+    </div>
+  </head>
+  <body>
+    <h1 class="text-center text-uppercase">Deportes</h1>
+    <div class="container">
+        <div class="row">
+            <button type="button" class="btn btn-primary" id="enviar">Obtener Deportes</button>
+        </div>
+        <br/>
+        <div class="row">
+            <table class="table" id="Deportes">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Descripción</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <!-- Optional Javacript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script>
+        $("#enviar").click(function(){
+            $.get("https://www.thesportsdb.com/api/v1/json/1/all_sports.php", 
+                function(data){
+                    $.each(data.sports, function(i, item){
+                        $("#Deportes").append("<tr><td>" + item.idSport + "</td><td>" + item.strSport + "</td><td> <img src='" + item.strSportThumb + "'>" + "</td><td>" + item.strSportDescription + "</td></tr>")
+                    });
+
+                });
+
+        });
+    </script>
+  </body>
+</html>
